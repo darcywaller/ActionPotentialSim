@@ -1,0 +1,763 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<style>
+body{
+    background-color: #91a3b0; 	
+    font-family: Verdana, Arial;
+	font-size: 16pt;
+	color:  white;
+    }
+.trialDiv {
+	border: 2px solid black;
+	padding: 10px;
+	color: black;
+	width: 600px;
+	margin: 0 auto;
+	font-family: Verdana, Arial;
+	font-size: 14pt;
+    background-color:white;
+	display: none;
+
+}
+.potentialChart {
+	border: 2px solid black;
+	padding: 10px;
+	color: black;
+	width: 100px;
+	position: absolute;
+	right: 200px;
+	top: 8px;
+	margin: 0 auto;
+	font-family: Verdana, Arial;
+	font-size: 10pt;
+    background-color:white;
+	display: none;
+	}
+.backButton {
+	position: absolute;
+	left: 25%;
+	border-radius: 15px;
+	display: none;
+}
+.nextButton {
+	position: absolute;
+	right: 25%;
+	border-radius: 15px;
+	display: none;
+}
+.helpButton {
+	position: absolute;
+	right: 50%;
+	border-radius: 15px;
+	display: none;
+}
+.ionChansButton {
+	position: absolute;
+	left: 32%;
+	border-radius: 15px;
+	display: none;
+}
+.ionPumpsButton {
+	position: absolute;
+	right: 35%;
+	border-radius: 15px;
+	display: none;
+}
+.gluButton {
+	position: absolute;
+	left: 17%;
+	top: 15%;
+	border-radius: 15px;
+	display: none;
+}
+.gabaButton {
+	position: absolute;
+	left: 18.6%;
+	top: 20%;
+	border-radius: 15px;
+	display: none;
+}
+</style>
+<!--Make text for home page and start button-->
+<h1 id = "welcomeHeader" style="text-align:center">Welcome to the action potential lab!</h1>
+<p id = "startInstructions" style="text-align:center">Today you will be working through several computerized learning modules
+	<br>as you fill out your Lab Notebook worksheet. Your instructor is here to help you with 
+	<br>questions you have about the computerized modules, but you must complete the worksheet
+	<br>and interactive simulation portions of the modules on your own. <br>
+	<br>We will begin with a short pre-test to assess your knowledge of this material. 
+	<br> Take the pre-test at this link: <a href="https://forms.gle/DeYMu1gKjUKyMMmC9" target="_blank">Take pre-test</a> <br>
+	<br>Once you've completed the pre-test, use the "Start Activity" button to begin. 
+</p>
+<center><button type="button" id="startActivity" onClick="showTutorial();">Start Activity</button></center>
+<!--Make tutorial button explanation text-->
+<div id="tutorial" class="trialDiv">
+	<p style="text-align:left">Before we get started, let's explain how you'll navigate through
+		<br>the modules. As you're working with the modules, there will be
+		<br>buttons below and to the sides of this box. These 
+		<br>buttons indicate the options you have to interact with the
+		<br>modules. The ones you see now, "Back", "Next", and "Help" 
+		<br>will always be available. <br>
+		<br>Using the <b>Back</b> button, you can navigate back to the previous screen or go back to replay an animation.
+		<br>Using the <b>Next</b> button, you can navigate to the next screen once you're done with the current page or advance once an animation has played.
+		<br>If you get stuck or aren't sure what to do next, click the <b>Help</b> button for a reminder.
+		<br>When you're ready, use the <b>Next</b> button to begin. </p>
+</div>
+<!--Make explanation text for before first sim-->
+<div id="sim1Prompt" class="trialDiv">
+	<p style="text-align:left"> Next, you will interact with a simulation of a cell membrane! 
+		<br>Before you do, feel free to go back and review the information
+		<br>we just presented. As you interact with the simulated cell,
+		<br>follow the instructions on your lab notebook worksheet to write
+		<br> down your observations and predictions. </p>
+</div>
+<div id="sim2Prompt" class="trialDiv">
+	<p style="text-align:left"> Next, you will interact with a simulation of a neuron to
+		<br>generate action potentials! Before you do, feel free to go back 
+		<br>and review the information we just presented. As you interact 
+		<br>with the neuron, follow the instructions on your lab notebook 
+		<br>worksheet to write down your observations and predictions. </p>
+</div>
+<div id="finishScreen">
+	<p style="text-align:center"> You have completed the computerized instruction modules on the action potential!
+		<br>You may replay and revisit any of the information we have just presented until you
+		<br>feel confident in your knowledge of the material. 
+		<br>When you are finished reviewing, take the post-test here: <a href="https://forms.gle/wHzpg4yTobLCzTzi9" target="_blank">Take post-test</a>
+		<br><br>When you've completed the post-test, you may close this window.
+</div>
+<!--Make still images to hide and show-->
+<div id="exMembrane1" class="trialDiv">
+	<center><img src="media/ex_membrane_1.png" width=500></center>
+</div>
+<div id="exMembrane2" class="trialDiv">
+	<center><img src="media/ex_membrane_2.png" width=500></center>
+</div>
+<div id="exMembrane3" class="trialDiv">
+	<center><img src="media/ex_membrane_3.png" width=500></center>
+</div>
+<div id="exMembrane4" class="trialDiv">
+	<center><img src="media/ex_membrane_4.png" width=500></center>
+</div>
+<div id="neuron1" class="trialDiv">
+	<center><img src="media/neuron tutorial 1.png" width=500></center>
+</div>
+<div id="neuron2" class="trialDiv">
+	<center><img src="media/neuron tutorial 2.png" width=500></center>
+</div>
+<div id="neuron3" class="trialDiv">
+	<center><img src="media/neuron tutorial 3.png" width=500></center>
+</div>
+<!--Still images for before gifs-->
+<div id="preSim1" class="trialDiv">
+	<center><img src="media/pre_sim1.jpg" width=500></center>
+</div>
+<div id="preSim2" class="trialDiv">
+	<center><img src="media/pre_sim2.jpg" width=500></center>
+</div>
+<div id="preglu1" class="trialDiv">
+	<center><img src="media/pre_glufirst.jpg" width=500></center>
+</div>
+<div id="pregluSecond" class="trialDiv">
+	<center><img src="media/pre_glusecond.jpg" width=500></center>
+</div>
+<div id="pregabaSecond" class="trialDiv">
+	<center><img src="media/pre_gabasecond.jpg" width=500></center>
+</div>
+<div id="preglu2" class="trialDiv">
+	<center><img src="media/pre_glu2.jpg" width=500></center>
+</div>
+<div id="preglu3" class="trialDiv">
+	<center><img src="media/pre_glu3.jpg" width=500></center>
+</div>
+<div id="prenakpumps" class="trialDiv">
+	<center><img src="media/pre_nakpumps.jpg" width=500></center>
+</div>
+<!--animation gifs-->
+<div id="sim1Gif" class="trialDiv">
+	<center><img id="sim1Gif_img" src="media/sim 1.1.gif" width=500></center>
+</div>
+<div id="sim2Gif" class="trialDiv">
+	<center><img id= "sim2Gif_img" src="media/sim 1.2.gif" width=500></center>
+</div>
+<div id="glu1Gif" class="trialDiv">
+	<center><img id="glu1Gif_img" src="media/simulation glu first.gif" width=500></center>
+</div>
+<div id="gaba1Gif" class="trialDiv">
+	<center><img id="gaba1Gif_img" src="media/simulation GABA first.gif" width=500></center>
+</div>
+<div id="gluSecondGif" class="trialDiv">
+	<center><img id="gluSecondGif_img" src="media/simulation glu second.gif" width=500></center>
+</div>
+<div id="gabaSecondGif" class="trialDiv">
+	<center><img id="gabaSecondGif_img" src="media/simulation GABA second.gif" width=500></center>
+</div>
+<div id="glu2Gif" class="trialDiv">
+	<center><img id="glu2Gif_img" src="media/simulation round 2 glu.gif" width=500></center>
+</div>
+<div id="glu3Gif" class="trialDiv">
+	<center><img id="glu3Gif_img" src="media/simulation round 3 glu.gif" width=500></center>
+</div>
+<div id="NaKPumpsGif" class="trialDiv">
+	<center><img id="NaKPumpsGif_img" src="media/nak pumps.gif" width=500></center>
+</div>
+<!--Membrane potential readouts-->
+<div id = "negPotential" class="potentialChart">
+	<p>Membrane potential: <b>negative</b></p>
+</div>
+<div id = "zeroPotential" class="potentialChart">
+	<p>Membrane potential: <b>zero</b></p>
+</div>
+<div id = "restPotential" class="potentialChart">
+	<p>Membrane potential: <b>-70mV</b></p>
+</div>
+<div id = "eightyPotential" class="potentialChart">
+	<p>Membrane potential: <b>-80mV</b></p>
+</div>
+<div id = "sixtyPotential" class="potentialChart">
+	<p>Membrane potential: <b>-60mV</b></p>
+</div>
+<div id = "fiftyPotential" class="potentialChart">
+	<p>Membrane potential: <b>-50mV</b></p>
+</div>
+<div id = "minusfortyPotential" class="potentialChart">
+	<p>Membrane potential: <b>-40mV</b></p>
+</div>
+<div id = "plusfortyPotential" class="potentialChart">
+	<p>Membrane potential: <b>+40mV</b></p>
+</div>
+<!--Make navigation buttons-->
+<button type="button" id="back" class="backButton" onClick="incrementDown();">Back</button>
+<button type="button" id="next" class="nextButton" onClick="incrementUp();">Next</button>
+<button type="button" id="help" class="helpButton" onClick="giveHelp();">Help</button>
+<button type="button" id="ionChans" class="ionChansButton" onClick="allChansButton();">Open Ion Channels</button>
+<button type="button" id="ionPumps" class="ionPumpsButton" onClick="pumpsButton();">Activate Ion Pumps</button>
+<button type="button" id="glu" class="gluButton" onClick="addGlu();">Add glutamate</button>
+<button type="button" id="gaba" class="gabaButton" onClick="addGaba();">Add GABA</button>
+
+<!--Header instructions-->
+<p id = "exCellHeader" style="text-align:center"><br>Please study the information above. <br>Use the "Next" button to move on once you're finished.</p>
+<p id = "neuronHeader" style="text-align:center"><br>Please study the information above. <br>Use the "Next" button to move on once you're finished.</p>
+<p id = "NTHeader" style="text-align:center"><br>Use your lab notebook worksheet to make predictions.<br>Then, add neurotransmitter to the neuron.</p>
+<p id = "ionChansHeader" style="text-align:center"><br>Use your lab notebook worksheet to make predictions.<br>Then, open ion channels in the cell membrane.</p>
+<p id = "ionPumpsHeader" style="text-align:center"><br>Use your lab notebook worksheet to make predictions.<br>Then, activate ion pumps in the cell membrane.</p>
+<p id = "APHeader" style="text-align:center"><br>We restored the original ion ratios and the neuron is at resting potential. Make the neuron generate an action potential.</h2>
+<p id = "feedback" style="text-align:center"><br>Good job! Watch the animation, record your observations in your worksheet, <br>then use "Next" to continue.</p>
+
+<script>
+let index, sim1played, sim2played, gluWasFirst, gabaWasFirst, gabaWasSecond, gluWasSecond, glu1, glu2, APplayed, pumpsplayed; 
+$('#exCellHeader').hide();	$('#NTHeader').hide(); $('#finishScreen').hide();
+$('#neuronHeader').hide();	$('#ionChansHeader').hide(); $('#feedback').hide();
+$('#APHeader').hide();	$('#ionPumpsHeader').hide();
+
+function showTutorial() {
+	$('#tutorial').show();
+	$('#back').show();
+	$('#next').show();
+	$('#help').show();
+	$('#startActivity').hide();
+	$('#startInstructions').hide();
+	$('#welcomeHeader').hide();
+	if (index==undefined) {index = 0;}
+	return index;
+}
+
+function giveHelp(){
+	if (index==0) {alert('While you work through the modules, click the Help button for reminders on what to do next!');}
+	else if (index>=1 && index<5) {alert('This is information you will need to know for the simulation module. Spend as long as you need on this page to take in the information, then click Next.');}
+	else if (index==5) {alert('When you are comfortable with the information we have presented so far, click "Next" to begin the simulation!');}
+	else if (index==6) {alert('Use the "Open Ion Channels" button to open ion channels in the cell membrane.');}
+	else if (index==7) {alert('Use the "Activate Ion Pumps" button to engage the ion pumps in the cell membrane.');}
+	else if (index>=8 && index<11) {alert('This is information you will need to know for the simulation module. Spend as long as you need on this page to take in the information, then click Next.');}
+	else if (index==11) {alert('When you are comfortable with the information we have presented so far, click "Next" to begin the simulation!');}
+	else if (index==12) {alert('Use "Add glutamate" or "Add GABA" to add neurotransmitter to the dendrites.');}
+	else if (index==13) {alert('Use "Add glutamate" or "Add GABA" to add the neurotransmitter you did not add last time.');}
+	else if (index>=14 && index<17) {alert('Add the neurotransmitter that will bring the neuron closer to an action potential. (Recall that the threshold for generating an action potential is -40mV.)');}
+	else if (index==17) {alert('Activate the Na/K pumps in the cell membrane to restore resting distribution of sodium and potassium ions.');}
+}
+	function updatePageForward(){
+	if (index==0) { // button tutorial
+		showTutorial();
+	} 
+	else if (index ==1) { // info p 1
+		$('#tutorial').hide();
+		$('#exMembrane1').show();
+		$('#exCellHeader').show();
+	}
+	else if (index==2) { // info p 2
+		$('#exMembrane1').hide();
+		$('#exMembrane2').show();
+	}
+	else if (index==3) { // info p 3
+		$('#exMembrane2').hide();
+		$('#exMembrane3').show();
+	}
+	else if (index==4){ // info p 4
+		$('#exMembrane3').hide();
+		$('#exMembrane4').show();
+	}
+	else if (index==5){ // instructions for first sim
+		$('#exMembrane4').hide();
+		$('#exCellHeader').hide();
+		$('#sim1Prompt').show();		
+	}
+	else if (index==6){ // open ion channels
+		$('#sim1Prompt').hide();
+		$('#ionChansHeader').show();		
+		$('#ionChans').show();
+		$('#ionPumps').show();
+		$('#preSim1').show();	
+		$('#negPotential').show();		
+	}
+	else if (index==7){ // activate ion pumps
+		refresh('sim1Gif_img');
+		$('#ionChansHeader').hide();		
+		$('#negPotential').hide();		
+		$('#zeroPotential').show();		
+		$('#feedback').hide();		
+		$('#ionPumpsHeader').show();		
+		$('#preSim1').hide();	
+		$('#sim1Gif').hide();	
+		$('#preSim2').show();	
+	}
+	else if (index==8){ // info p 1
+		refresh('sim2Gif_img');
+		$('#negPotential').hide();		
+		$('#zeroPotential').hide();	
+		$('#feedback').hide();		
+		$('#sim2Gif').hide();	
+		$('#preSim2').hide();	
+		$('#ionChans').hide();
+		$('#ionPumps').hide();
+		$('#ionPumpsHeader').hide();		
+		$('#neuronHeader').show();		
+		$('#neuron1').show();
+	}
+	else if (index==9){ // info p 2
+		$('#neuron1').hide();
+		$('#neuron2').show();
+		$('#negPotential').hide();	
+	}
+	else if (index==10){ // info p 3
+		$('#neuron2').hide();
+		$('#neuron3').show();
+	}
+	else if (index==11){ // prompt for second sim
+		$('#neuron3').hide();
+		$('#sim2Prompt').show();
+		$('#neuronHeader').hide();		
+	}
+	else if (index==12){ // add first nt
+		$('#preglu1').show();
+		$('#restPotential').show();		
+		$('#NTHeader').show();		
+		$('#glu').show();
+		$('#gaba').show();
+		$('#sim2Prompt').hide();
+	}
+	else if (index==13){ // add second nt
+		if (gluWasFirst==undefined) { //gaba was first
+			refresh('gaba1Gif_img');
+			$('#gaba1Gif').hide();	
+			$('#restPotential').hide();	
+			$('#eightyPotential').show();			
+			$('#preglu1').hide();
+			$('#NTHeader').show();		
+			$('#feedback').hide();
+			$('#pregluSecond').show();
+		}
+		else if (gabaWasFirst==undefined) { //glu was first
+			refresh('glu1Gif_img');
+			$('#preglu1').hide();
+			$('#restPotential').hide();		
+			$('#glu1Gif').hide();	
+			$('#NTHeader').show();		
+			$('#feedback').hide();
+			$('#sixtyPotential').show();		
+			$('#pregabaSecond').show();
+		}
+	}
+	else if (index==14){ // glu 1 for ap
+		refresh('gluSecondGif_img'); refresh('gabaSecondGif_img');
+		$('#NTHeader').hide();	
+		$('#restPotential').show();		
+		$('#eightyPotential').hide();		
+		$('#sixtyPotential').hide();		
+		$('#feedback').hide();	
+		$('#APHeader').show();		
+		$('#gabaSecondGif').hide();	
+		$('#gluSecondGif').hide();	
+		$('#preglu1').show();
+		$('#pregluSecond').hide();
+		$('#pregabaSecond').hide();
+
+	}
+	else if (index==15){ // glu 2 for ap
+		refresh('glu1Gif_img');
+		$('#preglu1').hide();
+		$('#restPotential').hide();		
+		$('#sixtyPotential').show();		
+		$('#preglu2').show();
+		$('#glu1Gif').hide();	
+	}
+	else if (index==16){ // glu 3 and ap fired
+		refresh('glu2Gif_img');
+		$('#preglu2').hide();
+		$('#sixtyPotential').hide();		
+		$('#fiftyPotential').show();	
+		$('#preglu3').show();
+		$('#glu2Gif').hide();	
+	}
+	else if (index==17){ // na/k pumps activated
+		refresh('glu3Gif_img');
+		$('#preglu3').hide();
+		$('#fiftyPotential').hide();	
+		$('#restPotential').show();	
+		$('#feedback').hide();
+		$('#prenakpumps').show();
+		$('#ionPumps').show();
+		$('#glu').hide();	
+		$('#gaba').hide();	
+		$('#glu3Gif').hide();	
+		$('#ionPumpsHeader').show();		
+		$('#APHeader').hide();		
+	}
+	else if (index==18){ // wrap up screen
+		refresh('NaKPumpsGif_img');
+		$('#prenakpumps').hide();
+		$('#restPotential').hide();	
+		$('#feedback').hide();
+		$('#NaKPumpsGif').hide();	
+		$('#finishScreen').show();
+		$('#next').hide();
+		$('#help').hide();
+		$('#ionPumps').hide();
+		$('#ionPumpsHeader').hide();		
+	}
+}
+function updatePageBack(){
+	if (index==0) {
+		showTutorial(); // button tutorial
+		$('#exMembrane1').hide();
+		$('#exCellHeader').hide();
+	} 
+	else if (index ==1) { // info p. 1
+		$('#exMembrane1').show();
+		$('#exMembrane2').hide();
+	}
+	else if (index==2) { // info p. 2
+		$('#exMembrane2').show();
+		$('#exMembrane3').hide();
+	}
+	else if (index==3) { // info p. 3
+		$('#exMembrane3').show();
+		$('#exMembrane4').hide();
+	}
+	else if (index==4){ // information p. 4
+		$('#exMembrane4').show();
+		$('#exCellHeader').show();
+		$('#sim1Prompt').hide();
+	}
+	else if (index==5){ // prompt before first simulation
+		refresh('sim1Gif_img');
+		$('#sim1Prompt').show(); 
+		$('#preSim1').hide();
+		$('#sim1Gif').hide();	
+		$('#ionChans').hide();
+		$('#ionPumps').hide();
+		$('#ionChansHeader').hide();
+		$('#feedback').hide();
+		$('#negPotential').hide();	
+		$('#zeroPotential').hide();	
+	}
+	else if (index==6){ // open ion channels
+		refresh('sim2Gif_img');
+		$('#preSim1').show();
+		$('#negPotential').show();	
+		$('#zeroPotential').hide();	
+		$('#sim2Gif').hide();	
+		$('#preSim2').hide();
+		$('#feedback').hide();
+		$('#ionPumpsHeader').hide();
+		$('#ionChansHeader').show();
+	}
+	else if (index==7){ // activate ion pumps
+		$('#preSim2').show();
+		$('#zeroPotential').show();	
+		$('#ionChans').show();
+		$('#ionPumps').show();
+		$('#neuron1').hide();
+		$('#neuronHeader').hide();
+		$('#ionPumpsHeader').show();
+	}
+	else if (index==8){ // info p. 1
+		$('#neuron2').hide();
+		$('#neuron1').show();
+	}
+	else if (index==9){ // info p. 2
+		$('#neuron3').hide();
+		$('#neuron2').show();
+	}
+	else if (index==10){ // info p. 3
+		$('#sim2Prompt').hide();
+		$('#neuron3').show();
+		$('#neuronHeader').show();
+	}
+	else if (index==11){ // prompt before second sim
+		$('#glu').hide();
+		$('#gaba').hide();
+		$('#preglu1').hide();
+		$('#glu1Gif').hide();	
+		$('#gaba1Gif').hide();	
+		$('#NTHeader').hide();
+		$('#restPotential').hide();	
+		$('#sixtyPotential').hide();	
+		$('#eightyPotential').hide();	
+		$('#sim2Prompt').show();
+		$('#feedback').hide();
+		refresh('glu1Gif_img'); refresh('gaba1Gif_img')
+	}
+	else if (index==12){ // add first neurotransmitter
+		refresh('gabaSecondGif_img'); refresh('gluSecondGif_img');
+		$('#preglu1').show();
+		$('#pregluSecond').hide();
+		$('#restPotential').show();	
+		$('#sixtyPotential').hide();	
+		$('#eightyPotential').hide();	
+		$('#pregabaSecond').hide();
+		$('#gluSecondGif').hide();	
+		$('#gabaSecondGif').hide();	
+		$('#feedback').hide();
+	}
+	else if (index==13){ // add second neurotransmitter
+		if (gluWasFirst==undefined) { //gaba was first
+			$('#gaba1Gif').hide();	
+			$('#pregluSecond').show();
+			$('#APHeader').hide();	
+			$('#NTHeader').show();			
+			$('#restPotential').hide();		
+			$('#eightyPotential').show();	
+			$('#preglu1').hide();			
+			refresh('glu1Gif_img');
+		}
+		else if (gabaWasFirst==undefined) { //glu was first
+			$('#glu1Gif').hide();	
+			$('#pregabaSecond').show();
+			$('#APHeader').hide();			
+			$('#restPotential').hide();	
+			$('#sixtyPotential').show();	
+			$('#NTHeader').show();		
+			$('#preglu1').hide();			
+			refresh('glu1Gif_img');	
+		}		
+	}
+	else if (index==14){ // glu 1 for ap
+		$('#glu2Gif').hide();	
+		$('#fiftyPotential').hide();	
+		$('#sixtyPotential').hide();	
+		$('#restPotential').show();	
+		$('#preglu1').show();
+		$('#preglu2').hide();			
+		refresh('glu2Gif_img');
+	}
+	else if (index==15){ // glu 2 for ap
+		$('#glu3Gif').hide();	
+		$('#restPotential').hide();	
+		$('#fiftyPotential').hide();	
+		$('#preglu3').hide();
+		$('#sixtyPotential').show();	
+		$('#preglu2').show();	
+		$('#preglu3').hide();	
+		$('#glu').show();	
+		$('#gaba').show();	
+		refresh('glu3Gif_img');
+	}
+	else if (index==16){ // glu 3 and ap fires
+		$('#restPotential').hide();	
+		$('#fiftyPotential').show();	
+		$('#NaKPumpsGif').hide();	
+		$('#ionPumps').hide();
+		$('#feedback').hide();
+		$('#preglu3').show();
+		$('#ionPumpsHeader').hide();		
+		$('#APHeader').show();	
+		$('#prenakpumps').hide();	
+		refresh('NaKPumpsGif_img');		
+	}
+	else if (index==17){ // na/k pumps activated
+		$('#prenakpumps').show();	
+		$('#ionPumps').show();
+		$('#restPotential').show();	
+		$('#next').show();	
+		$('#help').show();
+		$('#finishScreen').hide();
+		$('#ionPumpsHeader').show();			
+	}
+}
+function incrementUp(){
+	if (index==6 && sim1played==undefined) {giveHelp();}
+	else if (index==7 && sim2played==undefined) {giveHelp();}
+	else if (index==12 && (gluWasFirst==undefined && gabaWasFirst==undefined)){giveHelp();}
+	else if (index==13 && (gluWasSecond==undefined && gabaWasSecond==undefined)) {giveHelp();}
+	else if (index==14 && glu1==undefined) {giveHelp();}
+	else if (index==15 && glu2==undefined) {giveHelp();}
+	else if (index==16 && glu3==undefined) {giveHelp();}
+	else {
+		index++;
+		updatePageForward();
+	}
+}
+function incrementDown(){
+	if (index > 0) {index--;}
+	updatePageBack();
+}
+function allChansButton(){
+	if (index==6) {playSim1();}
+	else if (index==7) {giveHelp();}
+}
+function pumpsButton(){
+	if (index==6){giveHelp();}
+	else if (index==7){playSim2();}
+	else if (index==17) {playNaKPumps();}
+}
+function addGlu(){
+	if (index==12){
+		if (gluWasFirst==undefined && gabaWasFirst==undefined){
+			playGlu1();
+			return gluWasFirst=1;
+		}
+		else {alert('You already added neurotransmitter! Go to the next screen first to try adding the other one.');}
+	}
+	else if (index==13 && gluWasFirst==undefined){
+		playGluSecond();	
+		return gluWasSecond=1;	
+	}
+	else if (index==13 && gluWasFirst==1) {giveHelp();}	
+	else if (index==14) {playGlu1(); return glu1=1;}
+	else if (index==15) {playGlu2(); return glu2=1;}
+	else if (index==16) {playGlu3(); return glu3=1;}
+}
+function addGaba(){
+	if (index==12){
+		if (gabaWasFirst==undefined && gluWasFirst==undefined){
+			playGaba1();
+			return gabaWasFirst=1;
+		}
+		else {alert('You already added neurotransmitter! Go to the next screen first to try adding the other one.');}
+	}
+	else if (index==13 && gabaWasFirst==undefined){
+		playGabaSecond();
+		return gabaWasSecond=1;		
+	}
+	else if (index==13 && gabaWasFirst==1) {giveHelp();}
+	else if (index>=14 && index<17) {giveHelp();}
+}
+function playSim1(){
+	$('#preSim1').hide();		
+	$('#ionChansHeader').hide();
+	$('#feedback').show();
+	$('#sim1Gif').show()
+	setTimeout(potSwitch_sim1,7000);
+	function potSwitch_sim1(){
+		$('#negPotential').hide();		
+		$('#zeroPotential').show();	
+	}
+	return sim1played=1;
+}
+function playSim2(){
+	$('#preSim2').hide();
+	$('#ionPumpsHeader').hide();
+	$('#feedback').show();
+	$('#sim2Gif').show();	
+	setTimeout(potSwitch_sim2,8000);
+	function potSwitch_sim2(){
+		$('#zeroPotential').hide();		
+		$('#negPotential').show();	
+	}
+	return sim2played=1;
+}
+function playGaba1(){
+	$('#preglu1').hide();
+	$('#gaba1Gif').show();
+	$('#feedback').show();
+	$('#NTHeader').hide();		
+	setTimeout(potSwitch_gaba1,8000);
+	function potSwitch_gaba1(){
+		$('#restPotential').hide();	
+		$('#eightyPotential').show();	
+	}
+}
+function playGabaSecond(){
+	$('#pregabaSecond').hide();	
+	$('#gabaSecondGif').show();
+	$('#feedback').show();
+	$('#NTHeader').hide();		
+	setTimeout(potSwitch_gabaSecond,7000);
+	function potSwitch_gabaSecond(){
+		$('#sixtyPotential').hide();	
+		$('#restPotential').show();	
+	}
+}
+function playGlu1(){
+	$('#preglu1').hide();
+	$('#glu1Gif').show();
+	if (index==12){
+		$('#feedback').show();
+		$('#NTHeader').hide();		
+	}
+	setTimeout(potSwitch_glu1,6000);
+	function potSwitch_glu1(){
+		$('#restPotential').hide();	
+		$('#sixtyPotential').show();	
+	}
+	if (index==14){setTimeout(incrementUp,8000);} //advance settings for ap
+}
+function playGluSecond(){
+	$('#pregluSecond').hide();
+	$('#gluSecondGif').show();
+	$('#feedback').show();
+	$('#NTHeader').hide();		
+	setTimeout(potSwitch_gluSecond,6000);
+	function potSwitch_gluSecond(){
+		$('#eightyPotential').hide();	
+		$('#restPotential').show();	
+	}
+}
+function playGlu2(){
+	$('#preglu2').hide();
+	$('#glu2Gif').show();
+	setTimeout(potSwitch_glu2,8000);
+	setTimeout(incrementUp,10000);
+	function potSwitch_glu2(){
+		$('#sixtyPotential').hide();	
+		$('#fiftyPotential').show();	
+	}
+}
+function playGlu3(){
+	$('#preglu3').hide();
+	$('#glu3Gif').show();
+	$('#feedback').show();
+	$('#APHeader').hide();
+	setTimeout(potSwitch_ap1,6000);
+	setTimeout(potSwitch_ap2,12000);
+	setTimeout(potSwitch_ap3,17500);
+	function potSwitch_ap1(){
+		$('#fiftyPotential').hide();	
+		$('#minusfortyPotential').show();	
+	}
+	function potSwitch_ap2(){
+		$('#minusfortyPotential').hide();	
+		$('#plusfortyPotential').show();	
+	}
+	function potSwitch_ap3(){
+		$('#plusfortyPotential').hide();	
+		$('#restPotential').show();	
+	}
+}
+function playNaKPumps(){
+	$('#prenakpumps').hide();
+	$('#NaKPumpsGif').show();
+}
+function refresh(gif){
+	var img = document.getElementById(gif);
+	img.src = img.src;
+}
+</script>
