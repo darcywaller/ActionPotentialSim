@@ -294,6 +294,7 @@ function giveHelp(){
 		refresh('sim1Gif_img');
 		$('#ionChansHeader').hide();		
 		$('#zeroPotential').hide();		
+		$('#negPotential').hide();	
 		$('#ionChans').hide();
 		$('#feedback').hide();		
 		$('#preSim1').hide();	
@@ -399,6 +400,7 @@ function updatePageBack(){
 		showTutorial(); // button tutorial
 		$('#exMembrane1').hide();
 		$('#exCellHeader').hide();
+		$('#Part1Header').hide();
 	} 
 	else if (index ==1) { // info p. 1
 		$('#exMembrane1').show();
@@ -436,6 +438,9 @@ function updatePageBack(){
 		$('#ionChans').show();
 		$('#ionChansHeader').show();
 		$('#neuron1').hide();
+		$('#Part2Header').hide();
+		$('#neuronHeader').hide();		
+		$('#Part1Header').show();
 	}
 	else if (index==7){ // info p 1
 		$('#neuron2').hide();
